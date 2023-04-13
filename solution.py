@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
+from scipy import stats
 
+chat_id = 560481426 # Ваш chat ID, не меняйте название переменной
 
-chat_id = 123456 # Ваш chat ID, не меняйте название переменной
-
-def solution(...) -> bool: # Одна или две выборке на входе, заполняется исходя из условия
+def solution(x: np.array) -> bool: # Одна или две выборке на входе, заполняется исходя из условия
     # Измените код этой функции
     # Это будет вашим решением
-    # Не меняйте название функции и её аргументы
-    return ... # Ваш ответ, True или False
+    otv = stats.ttest_1samp(x, 500).pvalue/2 > 0.05 or x.mean() > 500
+    return not otv
